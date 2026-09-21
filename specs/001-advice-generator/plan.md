@@ -93,8 +93,9 @@ specs/001-advice-generator/
 ### Source Code (repository root)
 
 ```text
+index.html                      # Entry HTML — stays at the project root, as Vite expects
+
 src/
-├── index.html                  # Moved here from the repository root, per specs.md
 ├── main.tsx                    # Application entry point
 ├── App.tsx                     # Composes the page: one <main>, one <h1>
 ├── components/
@@ -129,7 +130,7 @@ images/                         # Existing optimized assets — served as Vite's
 ├── pattern-divider-mobile.svg
 └── favicon-32x32.png
 
-vite.config.ts                  # root: 'src', publicDir: ../images, build.outDir: ../dist
+vite.config.ts                  # publicDir: 'images' — otherwise Vite defaults
 package.json
 tsconfig.json
 ```
@@ -139,13 +140,14 @@ application source under `src/` and tests mirroring that layout under `tests/`. 
 backend directory and no monorepo tooling, because the constitution's Backend and Database
 rules are conditional and this project has neither.
 
-`specs.md` requires `index.html` to move into `src/` before implementation starts, which
-would normally conflict with Vite's expectation that the entry HTML sits at the project
-root. The conflict is resolved in configuration rather than by disobeying either side:
-`vite.config.ts` sets `root: 'src'`, which makes `src/index.html` the true entry point, with
-`publicDir` pointed at the existing repository-level `images/` directory and `build.outDir`
-pointed back out to `dist/`. Assets keep their single home in `images/` and are referenced
-as root-relative URLs such as `/icon-dice.svg`.
+`index.html` stays at the project root, which is where Vite expects the entry HTML and what
+`specs.md` now specifies. An earlier draft moved it into `src/` and compensated with
+`root: 'src'` in the Vite config; that worked but bought nothing, and it meant every path in
+the config had to climb back out of `src/`. Keeping the file at the root lets the build use
+Vite's defaults, so the only configuration needed is `publicDir: 'images'` to serve the
+existing optimized assets. All *application* source still lives under `src/`, which is what
+`specs.md` asks for. Assets keep their single home in `images/` and are referenced as
+root-relative URLs such as `/icon-dice.svg`.
 
 Component styles sit beside their components as `*.module.css`, which is the CSS Modules
 convention and keeps each component's styling in one obvious place. The shared, non-scoped

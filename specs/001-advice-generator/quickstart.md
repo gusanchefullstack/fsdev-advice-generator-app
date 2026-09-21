@@ -108,6 +108,6 @@ lower bound in SC-004:
 2. ~~`specs.md` records one quote size.~~ **Resolved** — `my-sdd-docs/specs.md` now records
    24px below 768px and 28px at and above, matching the design. See
    [research.md](./research.md) D2.
-3. **`index.html` still sits at the repository root.** It moves to `src/` as the first
-   implementation step, with `vite.config.ts` setting `root: 'src'` to match. This remains
-   open and is task T004.
+3. ~~`index.html` must move to `src/`.~~ **Reversed 2026-09-21** — the file stays at the
+   project root, where Vite expects it, and `specs.md` was amended to match. Task T004 now
+   wires it up as the entry point rather than moving it.

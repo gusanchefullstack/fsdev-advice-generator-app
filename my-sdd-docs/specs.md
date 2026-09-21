@@ -74,7 +74,9 @@ The users should be able to:
 
 1. Layout
 
-Use the index.html file where to contain app. Move this file to /src folder previous to start.
+Use the index.html file where to contain app. Keep this file at the project root, which is
+where Vite expects the entry HTML. It references the application entry point in `/src`, so
+all application source still lives under `src/` as described above.
 
 The designs were created to the following widths:
 

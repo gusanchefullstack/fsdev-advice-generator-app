@@ -36,13 +36,13 @@ optimized assets in `images/`. Paths follow the structure decided in
 - [x] T001 Create the GitHub repository `fsdev-advice-generator-app` and add it as the `origin` remote. **DONE 2026-09-21** — created private and wired as `origin`; must be made public before the Frontend Mentor submission step.
 - [x] T002 Amend `my-sdd-docs/specs.md` § Front-end Style Guide → Typography to record **two** quote sizes — 24px below 768px and 28px at 768px and above. **DONE 2026-09-21** — approved by the author in favour of the Figma definition; the spec and the design now agree.
 - [ ] T003 Initialize `package.json` at the repository root with React 18+, React DOM, TypeScript 5.x, Vite 5+, Vitest, `@testing-library/react`, `@testing-library/user-event`, `@testing-library/jest-dom` and `jsdom`
-- [ ] T004 Move `index.html` from the repository root to `src/index.html`, per `my-sdd-docs/specs.md` § Front-end Style Guide
-- [ ] T005 Create `vite.config.ts` at the repository root with `root: 'src'`, `publicDir` pointed at the repository-level `images/` directory, `build.outDir` pointed at `../dist` and `build.emptyOutDir: true`
+- [ ] T004 Update `index.html` at the repository root to be the Vite entry point: add `<script type="module" src="/src/main.tsx"></script>`, add the mount node `<div id="root"></div>`, and change the favicon reference from `./images/favicon-32x32.png` to `/favicon-32x32.png` (it is served from `publicDir`). The file stays at the root, per `my-sdd-docs/specs.md` § Front-end Style Guide.
+- [ ] T005 Create `vite.config.ts` at the repository root with the React plugin and `publicDir: 'images'`, so the existing optimized assets are served at root-relative URLs such as `/icon-dice.svg`. Everything else stays on Vite's defaults — entry `index.html` at the root, build output to `dist/`.
 - [ ] T006 [P] Create `tsconfig.json` and `tsconfig.node.json` at the repository root, targeting ES2022 with `strict: true`
 - [ ] T007 [P] Configure Vitest in `vite.config.ts` with the `jsdom` environment, and create `tests/setup.ts` importing `@testing-library/jest-dom`
 - [ ] T008 [P] Replace the "Commands" section of `CLAUDE.md` with the real `dev` / `build` / `test` scripts, including how to run a single test file and a single test case
 
-**Checkpoint**: `npm run dev` serves a blank page from `src/index.html`; `npm test` runs and finds no tests yet.
+**Checkpoint**: `npm run dev` serves a blank page from the root `index.html`; `npm test` runs and finds no tests yet.
 
 ---
 

@@ -40,7 +40,7 @@ Once `package.json` exists, replace this section with the real `dev` / `build` /
 **Structure** (per `specs.md`):
 
 - Source lives in `src/`, with CSS and TypeScript in their own subfolders and React components under a components folder.
-- **`index.html` must be moved into `src/` before implementation starts.** This is explicit in `specs.md` and easy to miss.
+- **`index.html` stays at the project root**, where Vite expects the entry HTML; `specs.md` was amended on 2026-09-21 to say so, reversing an earlier instruction to move it into `src/`. Application source still lives under `src/`.
 - Design tokens — fonts, colours, gradients, typography — must be parameterized in **a separate variables file** (constitution §4), not scattered across component styles.
 - Keep the structure plain; the constitution explicitly warns against overengineering.
 
