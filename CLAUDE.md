@@ -22,16 +22,26 @@ Treat these documents as the source of truth rather than duplicating their conte
 
 ## Commands
 
-**None yet — no build tooling is installed.** There is no `package.json`, lockfile, or test runner in the repo.
+```bash
+npm install
+npm run dev        # Vite dev server on http://localhost:5173
+npm run build      # type-check (tsc --noEmit) then production build to dist/
+npm run preview    # serve the production build
+npm test           # Vitest, watch mode
+npm run test:run   # Vitest, single pass
+```
 
-Scaffolding the toolchain is the first implementation step, and the stack is mandated (not a choice) by `specs.md` and constitution §4:
+Run a single test file, or a single case by name:
 
-- **Vite** as the dev/build server
-- **React** + **TypeScript**
-- **CSS Modules** with classes for styling
-- **Vitest** for tests
+```bash
+npx vitest run tests/services/adviceService.test.ts
+npx vitest run -t "rejects when the service reports an error at HTTP 200"
+```
 
-Once `package.json` exists, replace this section with the real `dev` / `build` / `test` scripts, including how to run a single test.
+The stack is mandated by `specs.md` and constitution §4: Vite, React, TypeScript,
+CSS Modules, Vitest. `vite.config.ts` sets `publicDir: 'images'` so the challenge's
+pre-optimized assets are served from the root (`/icon-dice.svg`); everything else
+uses Vite's defaults, with `index.html` at the project root.
 
 ## Architecture and constraints
 

@@ -1,0 +1,54 @@
+/*
+ * Design tokens, read from the Figma Design System page.
+ * This is the single place tokens are declared (constitution, Principle IV);
+ * component stylesheets reference these and never restate the literal values.
+ */
+
+:root {
+  /* Colours */
+  --color-blue-950: #202733; /* page background */
+  --color-blue-900: #313a48; /* card background */
+  --color-blue-600: #4f5d74; /* divider rules */
+  --color-blue-200: #cee3e9; /* quote text */
+  --color-green-300: #53ffaa; /* heading, dice button, hover glow */
+
+  /* Spacing scale */
+  --spacing-0: 0;
+  --spacing-100: 8px;
+  --spacing-200: 16px;
+  --spacing-300: 24px;
+  --spacing-400: 32px;
+  --spacing-500: 40px;
+  --spacing-800: 64px;
+  --spacing-1600: 128px;
+
+  /* Typography — Manrope ExtraBold (800) is the only weight in the design */
+  --font-family: 'Manrope', sans-serif;
+  --font-weight-extrabold: 800;
+
+  /* Text Preset 3 — the ADVICE #nnn heading */
+  --font-size-heading: 13px;
+  --letter-spacing-heading: 4px;
+
+  /* Text Preset 2 / Preset 1 — the quote, which changes size at 768px */
+  --font-size-quote-mobile: 24px;
+  --font-size-quote-desktop: 28px;
+  --letter-spacing-quote: -0.3px;
+
+  --line-height: 1.35;
+
+  /* Card */
+  --card-radius-mobile: 10px;
+  --card-radius-desktop: 15px;
+  --card-max-width-mobile: 343px;
+  --card-max-width-desktop: 540px;
+  --card-min-height-mobile: 314px;
+  --card-min-height-desktop: 332px;
+  --card-padding-inline-mobile: var(--spacing-300);
+  --card-padding-inline-desktop: 48px;
+  --card-shadow: 30px 50px 80px 0 rgb(0 0 0 / 0.1);
+
+  /* Dice button */
+  --dice-size: var(--spacing-800);
+  --dice-glow: 0 0 40px 0 var(--color-green-300);
+}

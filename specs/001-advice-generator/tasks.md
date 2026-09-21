@@ -35,12 +35,12 @@ optimized assets in `images/`. Paths follow the structure decided in
 
 - [x] T001 Create the GitHub repository `fsdev-advice-generator-app` and add it as the `origin` remote. **DONE 2026-09-21** — created private and wired as `origin`; must be made public before the Frontend Mentor submission step.
 - [x] T002 Amend `my-sdd-docs/specs.md` § Front-end Style Guide → Typography to record **two** quote sizes — 24px below 768px and 28px at 768px and above. **DONE 2026-09-21** — approved by the author in favour of the Figma definition; the spec and the design now agree.
-- [ ] T003 Initialize `package.json` at the repository root with React 18+, React DOM, TypeScript 5.x, Vite 5+, Vitest, `@testing-library/react`, `@testing-library/user-event`, `@testing-library/jest-dom` and `jsdom`
-- [ ] T004 Update `index.html` at the repository root to be the Vite entry point: add `<script type="module" src="/src/main.tsx"></script>`, add the mount node `<div id="root"></div>`, and change the favicon reference from `./images/favicon-32x32.png` to `/favicon-32x32.png` (it is served from `publicDir`). The file stays at the root, per `my-sdd-docs/specs.md` § Front-end Style Guide.
-- [ ] T005 Create `vite.config.ts` at the repository root with the React plugin and `publicDir: 'images'`, so the existing optimized assets are served at root-relative URLs such as `/icon-dice.svg`. Everything else stays on Vite's defaults — entry `index.html` at the root, build output to `dist/`.
-- [ ] T006 [P] Create `tsconfig.json` and `tsconfig.node.json` at the repository root, targeting ES2022 with `strict: true`
-- [ ] T007 [P] Configure Vitest in `vite.config.ts` with the `jsdom` environment, and create `tests/setup.ts` importing `@testing-library/jest-dom`
-- [ ] T008 [P] Replace the "Commands" section of `CLAUDE.md` with the real `dev` / `build` / `test` scripts, including how to run a single test file and a single test case
+- [x] T003 Initialize `package.json` at the repository root with React 18+, React DOM, TypeScript 5.x, Vite 5+, Vitest, `@testing-library/react`, `@testing-library/user-event`, `@testing-library/jest-dom` and `jsdom`
+- [x] T004 Update `index.html` at the repository root to be the Vite entry point: add `<script type="module" src="/src/main.tsx"></script>`, add the mount node `<div id="root"></div>`, and change the favicon reference from `./images/favicon-32x32.png` to `/favicon-32x32.png` (it is served from `publicDir`). The file stays at the root, per `my-sdd-docs/specs.md` § Front-end Style Guide.
+- [x] T005 Create `vite.config.ts` at the repository root with the React plugin and `publicDir: 'images'`, so the existing optimized assets are served at root-relative URLs such as `/icon-dice.svg`. Everything else stays on Vite's defaults — entry `index.html` at the root, build output to `dist/`.
+- [x] T006 [P] Create `tsconfig.json` and `tsconfig.node.json` at the repository root, targeting ES2022 with `strict: true`
+- [x] T007 Configure Vitest in `vite.config.ts` with the `jsdom` environment, and create `tests/setup.ts` importing `@testing-library/jest-dom`. **Not parallel with T005 — both write `vite.config.ts`.**
+- [x] T008 [P] Replace the "Commands" section of `CLAUDE.md` with the real `dev` / `build` / `test` scripts, including how to run a single test file and a single test case
 
 **Checkpoint**: `npm run dev` serves a blank page from the root `index.html`; `npm test` runs and finds no tests yet.
 
@@ -52,9 +52,9 @@ optimized assets in `images/`. Paths follow the structure decided in
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T009 Create `src/styles/variables.css` declaring every design token as a custom property — colours `blue-950 #202733`, `blue-900 #313a48`, `blue-600 #4f5d74`, `blue-200 #cee3e9`, `green-300 #53ffaa`; the spacing scale `0, 8, 16, 24, 32, 40, 64, 128`; and the three Manrope 800 type presets from [research.md](./research.md) D1–D2. This is the single place tokens are declared (Principle IV).
-- [ ] T010 Create `src/styles/global.css` with a minimal reset, `body` background `blue-950`, and the Manrope 800 web font loaded from Google Fonts
-- [ ] T011 [P] Create `src/types/advice.ts` defining `interface AdviceSlip { id: number; advice: string }` and the discriminated union `AdviceState` with its three variants `loading` / `ready` / `failed`, exactly as specified in [data-model.md](./data-model.md#state-advicestate). `slip` is `AdviceSlip | null` on `loading` and `failed`, and `AdviceSlip` on `ready`.
+- [x] T009 Create `src/styles/variables.css` declaring every design token as a custom property — colours `blue-950 #202733`, `blue-900 #313a48`, `blue-600 #4f5d74`, `blue-200 #cee3e9`, `green-300 #53ffaa`; the spacing scale `0, 8, 16, 24, 32, 40, 64, 128`; and the three Manrope 800 type presets from [research.md](./research.md) D1–D2. This is the single place tokens are declared (Principle IV).
+- [x] T010 Create `src/styles/global.css` with a minimal reset, `body` background `blue-950`, and the Manrope 800 web font loaded from Google Fonts
+- [x] T011 [P] Create `src/types/advice.ts` defining `interface AdviceSlip { id: number; advice: string }` and the discriminated union `AdviceState` with its three variants `loading` / `ready` / `failed`, exactly as specified in [data-model.md](./data-model.md#state-advicestate). `slip` is `AdviceSlip | null` on `loading` and `failed`, and `AdviceSlip` on `ready`.
 
 **Checkpoint**: Tokens and types exist and compile. User story work can begin.
 
@@ -70,20 +70,20 @@ optimized assets in `images/`. Paths follow the structure decided in
 
 > Write these first and confirm they fail before implementing.
 
-- [ ] T012 [P] [US1] Write `tests/services/adviceService.test.ts` covering every case in [contracts/advice-service.md](./contracts/advice-service.md#required-test-cases): valid payload resolves; a `message` payload at HTTP 200 rejects; `slip.advice` empty, whitespace-only or non-string rejects; a non-JSON body rejects without throwing unhandled; a rejected `fetch` rejects; every call passes `cache: 'no-store'`; two consecutive calls carry distinct cache-busting parameters
-- [ ] T013 [P] [US1] Write `tests/hooks/useAdvice.test.ts` covering the mount behaviour: a retrieval starts on mount with no user action, state moves `loading` → `ready` on a valid payload, and state moves `loading` → `failed` carrying the friendly message on rejection
-- [ ] T014 [P] [US1] Write `tests/components/AdviceCard.test.tsx` covering: renders `ADVICE #<id>` and the quote from a given slip; renders the friendly message instead of the quote when `message` is set; never renders an empty card; the heading-and-quote region carries a polite live region role
+- [x] T012 [P] [US1] Write `tests/services/adviceService.test.ts` covering every case in [contracts/advice-service.md](./contracts/advice-service.md#required-test-cases): valid payload resolves; a `message` payload at HTTP 200 rejects; `slip.advice` empty, whitespace-only or non-string rejects; a non-JSON body rejects without throwing unhandled; a rejected `fetch` rejects; every call passes `cache: 'no-store'`; two consecutive calls carry distinct cache-busting parameters
+- [x] T013 [P] [US1] Write `tests/hooks/useAdvice.test.ts` covering the mount behaviour: a retrieval starts on mount with no user action, state moves `loading` → `ready` on a valid payload, and state moves `loading` → `failed` carrying the friendly message on rejection
+- [x] T014 [P] [US1] Write `tests/components/AdviceCard.test.tsx` covering: renders `ADVICE #<id>` and the quote from a given slip; renders the friendly message instead of the quote when `message` is set; never renders an empty card; the heading-and-quote region carries a polite live region role
 
 ### Implementation for User Story 1
 
-- [ ] T015 [US1] Implement `fetchAdvice()` in `src/services/adviceService.ts` per [contracts/advice-service.md](./contracts/advice-service.md): `GET https://api.adviceslip.com/advice` with `cache: 'no-store'` and a unique `?t=<epoch-ms>` parameter; validate the parsed body against the rules in [data-model.md](./data-model.md#entity-adviceslip) — body is a non-null object, `slip` is an object, `slip.advice` is a string with at least one non-whitespace character, `slip.id` is a number — and reject with a plain `Error` on any failure. **Must not branch on `response.ok` alone; the service returns HTTP 200 on failure.** Must not retry internally.
-- [ ] T016 [US1] Implement `useAdvice()` in `src/hooks/useAdvice.ts` holding `AdviceState`: start a retrieval on mount (FR-001), transition per the table in [data-model.md](./data-model.md#transitions), and convert every rejection into the single friendly message `"Couldn't fetch advice right now. Please try again."`. The underlying `Error` must never leave the hook (FR-008). Expose `state` and `requestAdvice`.
-- [ ] T017 [P] [US1] Implement `src/components/AdviceCard/AdviceCard.tsx` taking `{ slip: AdviceSlip | null; message: string | null }`, rendering the `ADVICE #<id>` heading and the quote wrapped in typographic quotation marks, or the friendly message in place of the quote. Presentational only — no retrieval, no state. Wrap the heading-and-quote region in a polite live region (FR-015).
-- [ ] T018 [P] [US1] Implement `src/components/AdviceCard/AdviceCard.module.css` for the desktop card per [research.md](./research.md) D3: background `blue-900`, radius `15px`, shadow `30px 50px 80px 0 rgba(0,0,0,0.1)`, horizontal padding `48px`, content column `444px`, heading→quote gap `24px`, section gap `40px`; heading in `green-300` at 13px with `4px` letter-spacing, uppercase; quote in `blue-200` at 28px with `-0.3px` letter-spacing and `1.35` line height
-- [ ] T019 [US1] Implement the divider in `AdviceCard.tsx` and its styles using `images/pattern-divider-desktop.svg` referenced as `/pattern-divider-desktop.svg` (per research D4 — use the shipped asset, do not rebuild it in CSS)
-- [ ] T020 [US1] Implement `src/App.tsx` composing the page: exactly one `<main>`, exactly one `<h1>` carrying the page name and visually hidden, and `<AdviceCard>` wired to `useAdvice()`. The visible `ADVICE #<id>` line is **not** the `<h1>` — see [contracts/ui-contract.md](./contracts/ui-contract.md#page-composition--app).
-- [ ] T021 [US1] Implement `src/main.tsx` mounting `<App />`, importing `src/styles/variables.css` and `src/styles/global.css`
-- [ ] T022 [US1] Run `npm test -- --run` and confirm the User Story 1 tests now pass
+- [x] T015 [US1] Implement `fetchAdvice()` in `src/services/adviceService.ts` per [contracts/advice-service.md](./contracts/advice-service.md): `GET https://api.adviceslip.com/advice` with `cache: 'no-store'` and a unique `?t=<epoch-ms>` parameter; validate the parsed body against the rules in [data-model.md](./data-model.md#entity-adviceslip) — body is a non-null object, `slip` is an object, `slip.advice` is a string with at least one non-whitespace character, `slip.id` is a number — and reject with a plain `Error` on any failure. **Must not branch on `response.ok` alone; the service returns HTTP 200 on failure.** Must not retry internally.
+- [x] T016 [US1] Implement `useAdvice()` in `src/hooks/useAdvice.ts` holding `AdviceState`: start a retrieval on mount (FR-001), transition per the table in [data-model.md](./data-model.md#transitions), and convert every rejection into the single friendly message `"Couldn't fetch advice right now. Please try again."`. The underlying `Error` must never leave the hook (FR-008). Expose `state` and `requestAdvice`.
+- [x] T017 [P] [US1] Implement `src/components/AdviceCard/AdviceCard.tsx` taking `{ slip: AdviceSlip | null; message: string | null }`, rendering the `ADVICE #<id>` heading and the quote wrapped in typographic quotation marks, or the friendly message in place of the quote. Presentational only — no retrieval, no state. Wrap the heading-and-quote region in a polite live region (FR-015).
+- [x] T018 [P] [US1] Implement `src/components/AdviceCard/AdviceCard.module.css` for the desktop card per [research.md](./research.md) D3: background `blue-900`, radius `15px`, shadow `30px 50px 80px 0 rgba(0,0,0,0.1)`, horizontal padding `48px`, content column `444px`, heading→quote gap `24px`, section gap `40px`; heading in `green-300` at 13px with `4px` letter-spacing, uppercase; quote in `blue-200` at 28px with `-0.3px` letter-spacing and `1.35` line height
+- [x] T019 [US1] Implement the divider in `AdviceCard.tsx` and its styles using `images/pattern-divider-desktop.svg` referenced as `/pattern-divider-desktop.svg` (per research D4 — use the shipped asset, do not rebuild it in CSS)
+- [x] T020 [US1] Implement `src/App.tsx` composing the page: exactly one `<main>`, exactly one `<h1>` carrying the page name and visually hidden, and `<AdviceCard>` wired to `useAdvice()`. The visible `ADVICE #<id>` line is **not** the `<h1>` — see [contracts/ui-contract.md](./contracts/ui-contract.md#page-composition--app).
+- [x] T021 [US1] Implement `src/main.tsx` mounting `<App />`, importing `src/styles/variables.css` and `src/styles/global.css`
+- [x] T022 [US1] Run `npm test -- --run` and confirm the User Story 1 tests now pass
 
 **Checkpoint**: Opening the page shows advice with no user action, and a friendly message when retrieval fails. User Story 1 is independently demonstrable.
 
@@ -97,18 +97,18 @@ optimized assets in `images/`. Paths follow the structure decided in
 
 ### Tests for User Story 2
 
-- [ ] T023 [P] [US2] Write `tests/components/DiceButton.test.tsx` covering: renders a real `<button type="button">`; is `disabled` and carries `aria-busy` while `isBusy`; has a non-empty accessible name; the dice glyph is decorative with empty `alt`; activates on click, Enter and Space
-- [ ] T024 [P] [US2] Extend `tests/hooks/useAdvice.test.ts` with the re-request cases: `requestAdvice()` moves `ready` → `loading` while **keeping the previous slip** (FR-005); `requestAdvice()` is ignored while `status === 'loading'` so requests cannot stack; `failed` → `loading` on retry; nothing retries automatically (FR-009)
-- [ ] T025 [P] [US2] Extend `tests/services/adviceService.test.ts` with a distinctness case: ten consecutive `fetchAdvice()` calls each issue a request with a distinct cache-busting parameter (SC-002)
+- [x] T023 [P] [US2] Write `tests/components/DiceButton.test.tsx` covering: renders a real `<button type="button">`; is `disabled` and carries `aria-busy` while `isBusy`; has a non-empty accessible name; the dice glyph is decorative with empty `alt`; activates on click, Enter and Space
+- [x] T024 [P] [US2] Extend `tests/hooks/useAdvice.test.ts` with the re-request cases: `requestAdvice()` moves `ready` → `loading` while **keeping the previous slip** (FR-005); `requestAdvice()` is ignored while `status === 'loading'` so requests cannot stack; `failed` → `loading` on retry; nothing retries automatically (FR-009)
+- [x] T025 [P] [US2] Extend `tests/services/adviceService.test.ts` with a distinctness case: ten consecutive `fetchAdvice()` calls each issue a request with a distinct cache-busting parameter (SC-002)
 
 ### Implementation for User Story 2
 
-- [ ] T026 [P] [US2] Implement `src/components/DiceButton/DiceButton.tsx` taking `{ onClick: () => void; isBusy: boolean }`, rendering a `<button type="button">` with an accessible name such as "Get new advice", containing `images/icon-dice.svg` referenced as `/icon-dice.svg` with empty `alt`, and setting `disabled` and `aria-busy` from `isBusy`
-- [ ] T027 [P] [US2] Implement `src/components/DiceButton/DiceButton.module.css` per [research.md](./research.md) D5–D6: a 64px circle filled `green-300` with the glyph at 24px, positioned centred on the card's bottom edge offset by half its height; green glow `box-shadow: 0 0 40px 0 <green-300>` on both `:hover` and `:focus-visible`; a visible focus indicator
-- [ ] T028 [US2] Wire `<DiceButton>` into `src/App.tsx`, passing `requestAdvice` as `onClick` and `state.status === 'loading'` as `isBusy`
-- [ ] T029 [US2] Guard `requestAdvice()` in `src/hooks/useAdvice.ts` so activations are ignored while a request is in flight, and confirm the previous slip is carried through the `loading` state so the card never blanks mid-request
-- [ ] T030 [US2] Run `npm test -- --run` and confirm the User Story 2 tests pass
-- [ ] T031 [US2] Verify in a real browser with DevTools → Network that ten consecutive dice activations each produce a genuine network request rather than `(from disk cache)`, and that the advice changes each time (FR-004, SC-002). **This cannot be proven with `curl` or in jsdom — neither implements an HTTP cache.**
+- [x] T026 [P] [US2] Implement `src/components/DiceButton/DiceButton.tsx` taking `{ onClick: () => void; isBusy: boolean }`, rendering a `<button type="button">` with an accessible name such as "Get new advice", containing `images/icon-dice.svg` referenced as `/icon-dice.svg` with empty `alt`, and setting `disabled` and `aria-busy` from `isBusy`
+- [x] T027 [P] [US2] Implement `src/components/DiceButton/DiceButton.module.css` per [research.md](./research.md) D5–D6: a 64px circle filled `green-300` with the glyph at 24px, positioned centred on the card's bottom edge offset by half its height; green glow `box-shadow: 0 0 40px 0 <green-300>` on both `:hover` and `:focus-visible`; a visible focus indicator
+- [x] T028 [US2] Wire `<DiceButton>` into `src/App.tsx`, passing `requestAdvice` as `onClick` and `state.status === 'loading'` as `isBusy`
+- [x] T029 [US2] Guard `requestAdvice()` in `src/hooks/useAdvice.ts` so activations are ignored while a request is in flight, and confirm the previous slip is carried through the `loading` state so the card never blanks mid-request
+- [x] T030 [US2] Run `npm test -- --run` and confirm the User Story 2 tests pass
+- [x] T031 [US2] Verify in a real browser with DevTools → Network that ten consecutive dice activations each produce a genuine network request rather than `(from disk cache)` (FR-004, SC-002). **The criterion is that every activation hits the network — not that the text differs every time. The service picks at random from a few hundred slips, so an occasional repeat is coincidence, not a caching failure.** This cannot be proven with `curl` or in jsdom — neither implements an HTTP cache.
 
 **Checkpoint**: User Stories 1 and 2 both work. The dice is fully functional, keyboard-operable and never serves stale advice.
 
@@ -122,14 +122,14 @@ optimized assets in `images/`. Paths follow the structure decided in
 
 ### Tests for User Story 3
 
-- [ ] T032 [P] [US3] Write `tests/components/AdviceCard.responsive.test.tsx` asserting what jsdom can actually verify — that both divider assets are referenced and that the card root carries the class the media queries target. **Note: jsdom performs no layout, so true responsive behaviour is verified in the browser at T036, not here.**
+- [x] T032 [P] [US3] Write `tests/components/AdviceCard.responsive.test.tsx` asserting what jsdom can actually verify — that both divider assets are referenced and that the card root carries the class the media queries target. **Note: jsdom performs no layout, so true responsive behaviour is verified in the browser at T036, not here.**
 
 ### Implementation for User Story 3
 
-- [ ] T033 [US3] Restructure `src/components/AdviceCard/AdviceCard.module.css` to be mobile-first: base rules for the mobile card per [research.md](./research.md) D3 — radius `10px`, horizontal padding `24px`, content column `296px`, heading→quote gap `16px`, section gap `32px`, quote at **24px** — with a single `min-width: 768px` media query raising them to the desktop values already written in T018
-- [ ] T034 [US3] In `src/components/AdviceCard/AdviceCard.module.css`, express the card width as a maximum with a fluid fallback — `343px` cap on mobile, `540px` cap from 768px, never a fixed pixel width — so the layout holds down to 320px (SC-004)
-- [ ] T035 [US3] Swap the divider asset at the 768px breakpoint in `src/components/AdviceCard/AdviceCard.module.css` (and its reference in `src/components/AdviceCard/AdviceCard.tsx` if set in markup), using `/pattern-divider-mobile.svg` below it and `/pattern-divider-desktop.svg` at and above it (research D4)
-- [ ] T036 [US3] Verify in a browser at **320px, 375px, 768px and 1440px**: no horizontal scrolling at any width; quote is 24px below 768px and 28px at and above; card is 343px/10px radius on mobile and 540px/15px radius from 768px; the divider asset swaps correctly
+- [x] T033 [US3] Restructure `src/components/AdviceCard/AdviceCard.module.css` to be mobile-first: base rules for the mobile card per [research.md](./research.md) D3 — radius `10px`, horizontal padding `24px`, content column `296px`, heading→quote gap `16px`, section gap `32px`, quote at **24px** — with a single `min-width: 768px` media query raising them to the desktop values already written in T018
+- [x] T034 [US3] In `src/components/AdviceCard/AdviceCard.module.css`, express the card width as a maximum with a fluid fallback — `343px` cap on mobile, `540px` cap from 768px, never a fixed pixel width — so the layout holds down to 320px (SC-004)
+- [x] T035 [US3] Swap the divider asset at the 768px breakpoint in `src/components/AdviceCard/AdviceCard.module.css` (and its reference in `src/components/AdviceCard/AdviceCard.tsx` if set in markup), using `/pattern-divider-mobile.svg` below it and `/pattern-divider-desktop.svg` at and above it (research D4)
+- [x] T036 [US3] Verify in a browser at **320px, 375px, 768px and 1440px**: no horizontal scrolling at any width; quote is 24px below 768px and 28px at and above; card is 343px/10px radius on mobile and 540px/15px radius from 768px; the divider asset swaps correctly
 
 **Checkpoint**: All three user stories are independently functional across the supported width range.
 
@@ -137,14 +137,14 @@ optimized assets in `images/`. Paths follow the structure decided in
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T037 Verify unusually long and unusually short advice wraps inside the card without clipping or collapsing the layout, at both 375px and 1440px (US3 acceptance scenario 3)
-- [ ] T038 Run an automated accessibility audit (Lighthouse or axe) and resolve every violation; confirm exactly one `<main>` and exactly one `<h1>`, a visible focus indicator on the dice, a non-empty accessible name, and WCAG AA contrast (FR-013, FR-014, SC-005)
-- [ ] T039 Confirm with a screen reader that replacing the advice is announced politely and that focus is not stolen from the dice button (FR-015, research D10)
-- [ ] T040 [P] Add plain-style comments to the key parts of `src/services/adviceService.ts` and `src/hooks/useAdvice.ts` — in particular why success is decided from the payload rather than the status code, and why every request bypasses the cache
-- [ ] T041 Work through every check in [quickstart.md](./quickstart.md) and confirm all 20 pass
-- [ ] T042 Run the full suite with `npm test -- --run` and confirm it is green
-- [ ] T043 [P] Take screenshots at strictly 375px and strictly 1440px, save them to `screenshots/` at the repository root, and size the mobile shot to 40% the width of the desktop shot, per `my-sdd-docs/specs.md` § Documentation
-- [ ] T044 Create `README.md` from `README-template.md` using the `/create-readme` skill, including the author links and badges listed in `my-sdd-docs/specs.md` § Documentation and the screenshots from T043
+- [x] T037 Verify unusually long and unusually short advice wraps inside the card without clipping or collapsing the layout, at both 375px and 1440px (US3 acceptance scenario 3)
+- [x] T038 Run an automated accessibility audit (Lighthouse or axe) and resolve every violation; confirm exactly one `<main>` and exactly one `<h1>`, a visible focus indicator on the dice, a non-empty accessible name, and WCAG AA contrast (FR-013, FR-014, SC-005). **DONE — Lighthouse accessibility 100 / best practices 100, zero violations. Structure confirmed from the accessibility tree.**
+- [ ] T039 Confirm with a screen reader that replacing the advice is announced politely and that focus is not stolen from the dice button (FR-015, research D10). **PARTIAL — the markup is verified: the accessibility tree reports `status atomic live="polite"` on the advice region, and focus is never moved programmatically. Listening with a real screen reader (VoiceOver/NVDA) has NOT been performed and remains outstanding.**
+- [x] T040 [P] Add plain-style comments to the key parts of `src/services/adviceService.ts` and `src/hooks/useAdvice.ts` — in particular why success is decided from the payload rather than the status code, and why every request bypasses the cache
+- [ ] T041 Work through every check in [quickstart.md](./quickstart.md) and confirm all 20 pass. **19 of 20 verified in the browser. Outstanding: check 17, the screen-reader announcement, which depends on T039.**
+- [x] T042 Run the full suite with `npm test -- --run` and confirm it is green
+- [x] T043 [P] Take screenshots at strictly 375px and strictly 1440px, save them to `screenshots/` at the repository root, and size the mobile shot to 40% the width of the desktop shot, per `my-sdd-docs/specs.md` § Documentation
+- [x] T044 Create `README.md` from `README-template.md` using the `/create-readme` skill, including the author links and badges listed in `my-sdd-docs/specs.md` § Documentation and the screenshots from T043
 
 ---
 

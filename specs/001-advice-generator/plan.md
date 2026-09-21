@@ -24,9 +24,10 @@ therefore bypasses the HTTP cache.
 
 ## Technical Context
 
-**Language/Version**: TypeScript 5.x, targeting ES2022
+**Language/Version**: TypeScript, targeting ES2022. Installed: 7.0.2 (the plan was drafted
+against 5.x; npm resolved the current major, and the build type-checks clean on it).
 
-**Primary Dependencies**: React 18+, Vite 5+ (dev server and build), CSS Modules (no CSS
+**Primary Dependencies**: React 19.3, Vite 8.3 (dev server and build), CSS Modules (no CSS
 framework — Tailwind is explicitly not used)
 
 **Storage**: None. No persistence, no history, no browser storage of any kind.

@@ -1,0 +1,27 @@
+/*
+ * The dice sits centred on the card's bottom edge, half outside it, so the
+ * card and the button share a positioned wrapper rather than being siblings
+ * in normal flow.
+ */
+.layout {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: var(--card-max-width-mobile);
+  margin-bottom: calc(var(--dice-size) / 2);
+}
+
+@media (min-width: 768px) {
+  .layout {
+    max-width: var(--card-max-width-desktop);
+  }
+}
+
+.dice {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+}

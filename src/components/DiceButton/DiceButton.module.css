@@ -1,0 +1,33 @@
+.button {
+  display: grid;
+  place-items: center;
+  width: var(--dice-size);
+  height: var(--dice-size);
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-green-300);
+  cursor: pointer;
+  transition: box-shadow 200ms ease-in-out;
+}
+
+/* The design's active state is a green glow, used for hover and keyboard
+   focus alike so focus does not need a separate invented treatment. */
+.button:hover,
+.button:focus-visible {
+  box-shadow: var(--dice-glow);
+}
+
+.button:focus-visible {
+  outline: 2px solid var(--color-blue-200);
+  outline-offset: 4px;
+}
+
+.button:disabled {
+  cursor: progress;
+}
+
+.glyph {
+  width: 24px;
+  height: 24px;
+}
