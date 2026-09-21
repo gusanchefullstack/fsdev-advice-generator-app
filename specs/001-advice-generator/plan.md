@@ -63,7 +63,7 @@ No authentication, no navigation, no server-side component.
 | User-facing error translation | Principle VI | PASS | One friendly message for every failure path; the service never surfaces its own error objects to the UI. See the error contract. |
 | Mandated stack, no backend scaffolded | Technology Stack | PASS | React + TypeScript + CSS Modules + Vite + Vitest, frontend only. No Node/Express, no Prisma, no database. |
 | Figma files excluded from version control | Workflow | PASS | `.gitignore` already covers `*.fig`, `*.sketch`, `*.xd`. |
-| GitHub repository created before implementation | Workflow | PASS | `fsdev-advice-generator-app` created 2026-09-21 and wired as `origin`. Currently **private**; it must be made public before the Frontend Mentor submission step, which needs a publicly reachable repository URL. |
+| GitHub repository created before implementation | Workflow | PASS | `fsdev-advice-generator-app` created 2026-09-21, wired as `origin`, and made public the same day. Ready for the Frontend Mentor submission step, which needs a publicly reachable repository URL. |
 
 **Post-Phase 1 re-check**: Re-run after the design artifacts below were written. All gates
 hold with the same evidence; the design introduced no new dependency, no additional

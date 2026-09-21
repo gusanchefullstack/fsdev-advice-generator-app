@@ -33,7 +33,7 @@ optimized assets in `images/`. Paths follow the structure decided in
 
 **Purpose**: Satisfy the pre-implementation gates and scaffold the toolchain.
 
-- [x] T001 Create the GitHub repository `fsdev-advice-generator-app` and add it as the `origin` remote. **DONE 2026-09-21** — created private and wired as `origin`; must be made public before the Frontend Mentor submission step.
+- [x] T001 Create the GitHub repository `fsdev-advice-generator-app` and add it as the `origin` remote. **DONE 2026-09-21** — created, wired as `origin`, and made public. No visibility caveat remains.
 - [x] T002 Amend `my-sdd-docs/specs.md` § Front-end Style Guide → Typography to record **two** quote sizes — 24px below 768px and 28px at 768px and above. **DONE 2026-09-21** — approved by the author in favour of the Figma definition; the spec and the design now agree.
 - [x] T003 Initialize `package.json` at the repository root with React 18+, React DOM, TypeScript 5.x, Vite 5+, Vitest, `@testing-library/react`, `@testing-library/user-event`, `@testing-library/jest-dom` and `jsdom`
 - [x] T004 Update `index.html` at the repository root to be the Vite entry point: add `<script type="module" src="/src/main.tsx"></script>`, add the mount node `<div id="root"></div>`, and change the favicon reference from `./images/favicon-32x32.png` to `/favicon-32x32.png` (it is served from `publicDir`). The file stays at the root, per `my-sdd-docs/specs.md` § Front-end Style Guide.

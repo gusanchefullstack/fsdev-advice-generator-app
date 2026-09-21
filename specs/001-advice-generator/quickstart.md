@@ -12,9 +12,8 @@ implementation phase.
 
 - Node.js 20 LTS or newer, with npm
 - An internet connection — the advice service is a third-party dependency
-- The frontend GitHub repository `fsdev-advice-generator-app` exists and is wired as
-  `origin`. It is currently **private** and must be made public before the Frontend Mentor
-  submission step.
+- The frontend GitHub repository `fsdev-advice-generator-app` exists, is wired as `origin`,
+  and is public — ready for the Frontend Mentor submission step.
 
 ## Commands
 
@@ -102,9 +101,8 @@ lower bound in SC-004:
 
 ## Known pre-implementation conditions
 
-1. ~~No GitHub remote.~~ **Resolved** — `fsdev-advice-generator-app` created and wired as
-   `origin` on 2026-09-21. Still private; make it public before submitting to Frontend
-   Mentor, which needs a publicly reachable repository URL.
+1. ~~No GitHub remote.~~ **Resolved** — `fsdev-advice-generator-app` created, wired as
+   `origin`, and made public on 2026-09-21.
 2. ~~`specs.md` records one quote size.~~ **Resolved** — `my-sdd-docs/specs.md` now records
    24px below 768px and 28px at and above, matching the design. See
    [research.md](./research.md) D2.
