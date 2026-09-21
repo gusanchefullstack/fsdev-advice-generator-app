@@ -39,7 +39,7 @@ Use defined APIs in specs to get data.
 ## 5. Code structure and styling
 
 - **Plain Structure:** Avoid overengineering.
-- **Style:** Prioritize object oriented programming OOP.
+- **Style:** Use function components as needed by react.
 - **Nomenclatura:** Use `camelCase` for functions/variables y `PascalCase` para Interfaces/Types or classes.
 
 ## 6. Error Handling and validations

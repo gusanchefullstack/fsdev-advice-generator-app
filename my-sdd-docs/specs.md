@@ -4,13 +4,12 @@
 
 The design can be found at Figma Desktop at:
 
-- System Design: 
-https://www.figma.com/design/blhCgD0US3YPfhgYxftkSu/advice-generator-app?node-id=2-2
-- Designs for Desktop, Tablet and Mobile: 
-https://www.figma.com/design/blhCgD0US3YPfhgYxftkSu/advice-generator-app?node-id=1-3
+- System Design:
+  https://www.figma.com/design/blhCgD0US3YPfhgYxftkSu/advice-generator-app?node-id=2-2
+- Designs for Desktop, Tablet and Mobile:
+  https://www.figma.com/design/blhCgD0US3YPfhgYxftkSu/advice-generator-app?node-id=1-3
 
 You will find all the required assets in the `/images` folder. The assets are already optimized.
-
 
 ## Domain Rules and Business Logic
 
@@ -19,6 +18,44 @@ The users should be able to:
 - View the optimal layout for the app depending on their device's screen size
 - See hover states for all interactive elements on the page
 - Generate a new piece of advice by clicking the dice icon
+
+### Data Source: Advice Slip API
+
+- Endpoint: `GET https://api.adviceslip.com/advice` — returns one random advice slip.
+- Success payload (HTTP 200):
+
+  ```json
+  { "slip": { "id": 193, "advice": "Value the people in your life." } }
+  ```
+
+  - `slip.id` — number. The slip identifier, shown in the heading per the Figma design.
+  - `slip.advice` — string. The advice text, shown as the quote.
+
+- The API returns **HTTP 200 on failure too**, with a different payload shape:
+
+  ```json
+  { "message": { "type": "error", "text": "Advice slip not found." } }
+  ```
+
+  A response therefore counts as successful only when `slip.advice` is a non-empty
+  string. `response.ok` MUST NOT be treated as sufficient. An unknown path returns an
+  HTML 404 page, so JSON parsing MUST be guarded against a non-JSON body.
+
+- The endpoint sends `Cache-Control: max-age=600, private, must-revalidate`. Without
+  cache-busting, a browser may serve the same slip for up to 10 minutes and the dice
+  button will appear not to work. Every request MUST bypass the HTTP cache — append a
+  unique query parameter, or pass `cache: "no-store"` to `fetch`.
+
+### Request States
+
+- **Loading**: while a request is in flight, the dice button is disabled and shows a
+  non-interactive state. The previously displayed advice remains visible until the new
+  slip arrives.
+- **Error**: any failure — network error, non-2xx status, unparseable body, or a
+  payload without `slip.advice` — displays the friendly message
+  "Couldn't fetch advice right now. Please try again." The dice button returns to its
+  enabled state so the user can retry. Raw errors and stack traces are never surfaced.
+- No automatic retry. The user retries by clicking the dice.
 
 ## Front-end Architecture and Style Guide
 
@@ -43,7 +80,7 @@ The designs were created to the following widths:
 
 - Mobile: 375px
 - Desktop: 1440px
-> These are just the design sizes. Ensure content is responsive and meets WCAG requirements by testing the full range of screen sizes from 320px to large screens.
+  > These are just the design sizes. Ensure content is responsive and meets WCAG requirements by testing the full range of screen sizes from 320px to large screens.
 
 2. Colors
 
@@ -52,7 +89,7 @@ The designs were created to the following widths:
 - Blue 200: hsl(193, 38%, 86%)
 - Green 300: hsl(150, 100%, 66%)
 
-2.2. Neutral
+  2.2. Neutral
 
 - Blue 600: hsl(217, 19%, 38%)
 - Blue 900: hsl(217, 19%, 24%)
@@ -64,12 +101,10 @@ The designs were created to the following widths:
 
 - Font size (quote): 28px
 
-3.2 Font
+  3.2 Font
 
 - Family: [Manrope](https://fonts.google.com/specimen/Manrope)
 - Weights: 800
-
-
 
 ## Testing
 
@@ -80,7 +115,7 @@ The designs were created to the following widths:
 
 ## Documentation
 
-- Add comments in plain style for key elements of code. 
+- Add comments in plain style for key elements of code.
 - Create a README.md following README-template.md but also considering skill /create-readme once the project is finished
 - Update the Author section in README with the following contact info. Add badges to each related link address. Arrange them in inline row.
   https://www.linkedin.com/in/gustavosanchezgalarza/
@@ -98,24 +133,18 @@ The designs were created to the following widths:
 
 - Once I confirm the project is done and the github repos were created, deploy the frontend project to vercel under my account (gustavosanchezgalarza@gmail.com). If the project has backend component, use www.render.com to deploy the backend.
 
-
 ## Post Implementation Tasks
 
 Execute the following tasks:
 
-1. Submit project to frontendmentor.io. Use @frontendmentor-submitter to submit the project.  Follow the ["Complete guide to submitting solutions"](https://www.frontendmentor.io/guides/how-to-submit-solutions) for tips on how to do this.
+1. Submit project to frontendmentor.io. Use @frontendmentor-submitter to submit the project. Follow the ["Complete guide to submitting solutions"](https://www.frontendmentor.io/guides/how-to-submit-solutions) for tips on how to do this.
 
 The url of the project is:
 https://www.frontendmentor.io/challenges/advice-generator-app-QdUG-13db?tab=submit
 
-
 2. Get Solution URL (in frontendmentor.io) and live site URL (in vercel) and once you have them update the git hub repo README.md. Also be sure to update the live site url in the repo page.
 
-
-3. Update my landing page. Ask for confirmation first. If yes, Use @landing-page-portfolio-updater to update my portafolio with this project. 
+3. Update my landing page. Ask for confirmation first. If yes, Use @landing-page-portfolio-updater to update my portafolio with this project.
 
 4. Fixing issues of FrontendMentor.io.
-Use @frontend-mentor-issue-fixer to fix issues detected by frontendmentor.io for improving score of app submitted.
-
-
-
+   Use @frontend-mentor-issue-fixer to fix issues detected by frontendmentor.io for improving score of app submitted.
