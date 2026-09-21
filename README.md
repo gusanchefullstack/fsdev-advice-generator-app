@@ -35,8 +35,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Add solution URL here](https://your-solution-url.com) *(pending Frontend Mentor submission)*
+- Live Site URL: [https://fsdev-advice-generator-app.vercel.app](https://fsdev-advice-generator-app.vercel.app)
 
 ## My process
 
