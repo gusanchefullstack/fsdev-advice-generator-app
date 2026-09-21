@@ -35,7 +35,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com) *(pending Frontend Mentor submission)*
+- Solution URL: [https://www.frontendmentor.io/solutions/advice-generator-react-typescript-built-spec-first-qHhKuVXz8-](https://www.frontendmentor.io/solutions/advice-generator-react-typescript-built-spec-first-qHhKuVXz8-)
 - Live Site URL: [https://fsdev-advice-generator-app.vercel.app](https://fsdev-advice-generator-app.vercel.app)
 
 ## My process
