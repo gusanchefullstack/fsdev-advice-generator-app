@@ -12,9 +12,9 @@ implementation phase.
 
 - Node.js 20 LTS or newer, with npm
 - An internet connection — the advice service is a third-party dependency
-- **The frontend GitHub repository must exist, with the `fsdev-` prefix, before
-  implementation starts.** No remote is configured yet; this is the outstanding
-  pre-implementation gate recorded in [plan.md](./plan.md#constitution-check).
+- The frontend GitHub repository `fsdev-advice-generator-app` exists and is wired as
+  `origin`. It is currently **private** and must be made public before the Frontend Mentor
+  submission step.
 
 ## Commands
 
@@ -102,9 +102,12 @@ lower bound in SC-004:
 
 ## Known pre-implementation conditions
 
-1. **No GitHub remote.** Must exist with the `fsdev-` prefix before implementation begins.
-2. **`specs.md` records one quote size (28px); the design uses two.** The mobile design is
-   24px. Figma is authoritative, so the plan follows it, but `specs.md` should be amended to
-   record both sizes before implementation — see [research.md](./research.md) D2.
+1. ~~No GitHub remote.~~ **Resolved** — `fsdev-advice-generator-app` created and wired as
+   `origin` on 2026-09-21. Still private; make it public before submitting to Frontend
+   Mentor, which needs a publicly reachable repository URL.
+2. ~~`specs.md` records one quote size.~~ **Resolved** — `my-sdd-docs/specs.md` now records
+   24px below 768px and 28px at and above, matching the design. See
+   [research.md](./research.md) D2.
 3. **`index.html` still sits at the repository root.** It moves to `src/` as the first
-   implementation step, with `vite.config.ts` setting `root: 'src'` to match.
+   implementation step, with `vite.config.ts` setting `root: 'src'` to match. This remains
+   open and is task T004.

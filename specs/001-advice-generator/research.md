@@ -49,11 +49,11 @@ makes Figma authoritative, and the Figma file additionally carries the spacing s
 no space between `#` and the number. This resolves the one open question carried by the
 specification.
 
-**⚠ Conflict with `specs.md`**: the style guide records a single quote size, 28px. The Figma
-designs use **24px on mobile** and 28px from tablet upward. Principle I makes Figma
-authoritative, so the plan follows Figma. This is a detected fault in the specification —
-under Principle II it needs a `specs.md` amendment recording both sizes, and that amendment
-should be made before implementation rather than after.
+**Conflict with `specs.md` — RESOLVED 2026-09-21**: the style guide originally recorded a
+single quote size, 28px, while the Figma designs use **24px on mobile** and 28px from tablet
+upward. Raised under Principle II and resolved in the author's favour of the design:
+`my-sdd-docs/specs.md` § Front-end Style Guide → Typography now records both sizes and the
+768px breakpoint between them. The specification and the design no longer disagree.
 
 **Alternatives considered**: Using 28px at every width to match `specs.md` literally.
 Rejected — it contradicts the authoritative design, and at 375px a 28px quote overflows the

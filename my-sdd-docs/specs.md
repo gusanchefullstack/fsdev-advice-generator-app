@@ -99,7 +99,14 @@ The designs were created to the following widths:
 
 3.1 Body Copy
 
-- Font size (quote): 28px
+Quote font size is defined by the Figma design and changes at the 768px breakpoint:
+
+- Font size (quote), below 768px: 24px
+- Font size (quote), 768px and above: 28px
+
+Both sizes use Manrope ExtraBold at 135% line height with -0.3px letter spacing (Figma
+"Text Preset 2" and "Text Preset 1" respectively). The full token set read from the Figma
+Design System is recorded in `specs/001-advice-generator/research.md` D1-D2.
 
   3.2 Font
 

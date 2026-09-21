@@ -62,12 +62,15 @@ No authentication, no navigation, no server-side component.
 | User-facing error translation | Principle VI | PASS | One friendly message for every failure path; the service never surfaces its own error objects to the UI. See the error contract. |
 | Mandated stack, no backend scaffolded | Technology Stack | PASS | React + TypeScript + CSS Modules + Vite + Vitest, frontend only. No Node/Express, no Prisma, no database. |
 | Figma files excluded from version control | Workflow | PASS | `.gitignore` already covers `*.fig`, `*.sketch`, `*.xd`. |
-| **GitHub repository created before implementation** | **Workflow** | **BLOCKED** | **No git remote is configured. The Development Workflow section requires the frontend repository to exist, carrying the `fsdev-` prefix, before implementation begins. This must be resolved before `/speckit-implement`, not during it.** |
+| GitHub repository created before implementation | Workflow | PASS | `fsdev-advice-generator-app` created 2026-09-21 and wired as `origin`. Currently **private**; it must be made public before the Frontend Mentor submission step, which needs a publicly reachable repository URL. |
 
 **Post-Phase 1 re-check**: Re-run after the design artifacts below were written. All gates
 hold with the same evidence; the design introduced no new dependency, no additional
-project, and no pattern requiring justification. The repository gate remains blocked and is
-the single outstanding pre-implementation condition.
+project, and no pattern requiring justification.
+
+**Gate status update (2026-09-21)**: the repository gate has since been satisfied, and the
+quote-size discrepancy recorded in research.md D2 has been resolved by amending
+`my-sdd-docs/specs.md`. No pre-implementation conditions remain outstanding.
 
 ## Project Structure
 
@@ -154,6 +157,6 @@ in `variables.css` as Principle IV requires.
 
 > **Fill ONLY if Constitution Check has violations that must be justified**
 
-No constitution violations to justify. The single BLOCKED gate above is an unmet
-pre-implementation condition (repository creation), not a design compromise, so it is
-tracked in the gate table rather than here.
+No constitution violations to justify. Every gate in the table above passes. The one gate
+that was previously blocked — repository creation — was an unmet pre-implementation
+condition rather than a design compromise, and it has since been satisfied.
