@@ -4,7 +4,15 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repository is
 
-A Frontend Mentor challenge ([Advice generator app](https://www.frontendmentor.io/challenges/advice-generator-app-QdUG-13db)) built as a Spec-Driven Development (SDD) exercise. As of this writing the repo is a **pre-implementation scaffold**: starter `index.html`, `/images` assets, the Figma file, and the two SDD documents. There is no `src/`, no `package.json`, and no application code yet.
+A Frontend Mentor challenge ([Advice generator app](https://www.frontendmentor.io/challenges/advice-generator-app-QdUG-13db)) built as a Spec-Driven Development (SDD) exercise.
+
+**The challenge is complete and shipped.** The app is implemented in `src/`, tested in `tests/`, deployed to Vercel, and submitted to Frontend Mentor (quality report: 8.9/10). The SDD artifacts live in `specs/001-advice-generator/` — spec, plan, research, data model, contracts, quickstart and the task breakdown — and the branch history preserves the phases: `constitution` → `spec` → `plan` → `tasks` → `implement`, with `main` carrying everything forward.
+
+- Live: https://fsdev-advice-generator-app.vercel.app
+- Repo: https://github.com/gusanchefullstack/fsdev-advice-generator-app
+- Solution: https://www.frontendmentor.io/solutions/advice-generator-react-typescript-built-spec-first-qHhKuVXz8-
+
+Further work on this repo is maintenance, not greenfield. The governance below still applies: changes are still spec-first.
 
 ## Governance: the SDD documents are authority
 
@@ -74,21 +82,35 @@ Vitest, per `specs.md`. Exercise the implementation at 375px, 768px, and 1440px 
 
 ## Versioning and delivery
 
-- GitHub repos are created **before** implementation and must carry the **`fsdev-`** prefix. This repo currently has no remote configured.
+- GitHub repos are created **before** implementation and must carry the **`fsdev-`** prefix. This repo's remote is `origin` → `gusanchefullstack/fsdev-advice-generator-app` (public, default branch `main`).
 - Never let Figma design files reach GitHub — `.gitignore` already covers `*.fig`, `*.sketch`, `*.xd`.
 - Deployment: frontend to **Vercel**, only after the user confirms the project is done and the GitHub repos exist.
 
 ## Post-implementation sequence
 
-`specs.md` defines an ordered pipeline; it is real work, not boilerplate:
+`specs.md` defines an ordered pipeline. **All four steps were completed on 2026-09-21**; they are recorded here because they apply to the next challenge built from these documents:
 
-1. Submit to frontendmentor.io via `@frontendmentor-submitter`.
-2. Collect the Solution URL and the live Vercel URL, then update `README.md` and the repo's live-site field.
-3. **Ask for confirmation first**, then update the portfolio via `@landing-page-portfolio-updater`.
-4. Fix reported issues via `@frontend-mentor-issue-fixer` to raise the quality score.
+1. Submit to frontendmentor.io via `@frontendmentor-submitter`. — done
+2. Collect the Solution URL and the live Vercel URL, then update `README.md` and the repo's live-site field. — done
+3. **Ask for confirmation first**, then update the portfolio via `@landing-page-portfolio-updater`. — done
+4. Fix reported issues via `@frontend-mentor-issue-fixer` to raise the quality score. — not needed; the report surfaced no fixable issues.
+
+**Frontend Mentor's analyzer clones the `main` branch by name, not the repo's default branch.** The first report scored 2.6/10 because `main` still held the pre-implementation scaffold while the code sat on `implement`. Fast-forwarding `main` took the same code to 8.9/10 with no source changes. Make sure `main` holds the real code before submitting.
 
 `README.md` is built from `README-template.md` (plus the `/create-readme` skill). `specs.md` holds the author links and the screenshot rules — screenshots go in `/screenshots` at strict 375px and 1440px, with the mobile shot rendered at 40% the width of the desktop shot.
 
-## Known spec gap
+## Two API behaviours that are easy to get wrong
 
-Constitution §3 says to "use defined APIs in specs," but `specs.md` never defines the Advice Slip API endpoint or response shape — only `constitution.md` names the API at all. Under the stop-and-ask rule this is a spec update, not something to assume. Raise it with the user before writing fetch code.
+`specs.md` § Domain Rules defines the Advice Slip contract (this gap was closed on
+2026-09-21 by calling the live endpoint). Two findings there drive most of
+`src/services/adviceService.ts`, and both look like bugs if you "fix" them:
+
+- **The API reports failure with HTTP 200** and a different payload shape
+  (`{ "message": {...} }` instead of `{ "slip": {...} }`). `response.ok` is not a
+  usable success signal; success is decided by validating that `slip.advice` is a
+  non-empty string. Do not replace that check with a status-code check.
+- **It sends `Cache-Control: max-age=600`**, so without intervention a browser serves
+  the same slip for ten minutes and the dice appears dead. Every request carries both
+  `cache: 'no-store'` and a unique query parameter combining the clock with a counter —
+  the counter matters because several clicks can land in one millisecond. This cannot be
+  verified with `curl` or in jsdom; neither implements an HTTP cache.
